@@ -1,0 +1,177 @@
+{% extends "base.html" %}
+
+<!-- {% block head %}
+ 
+{% endblock %} -->
+
+{% block content %}
+    <div class="container">
+
+        <div class="toppane">
+            <!-- <button onclick="sendSelectedObjectBack();">Send back</button>
+            <button onclick="sendSelectedObjectToFront();">Bring Front</button> -->
+            <div class="inline-flex rounded-md shadow-sm" role="group">
+                <!-- <a href="" class="brand-logo">Logo</a> -->
+                <button type="button" onclick="sendSelectedObjectBack();" class="py-2 px-4 text-sm font-medium text-gray-900 bg-blue-700 rounded-l-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
+                    Send back
+                </button>
+                <button type="button" onclick="sendSelectedObjectToFront();" class="py-2 px-4 text-sm font-medium text-gray-900 bg-red-700 border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
+                    Bring Front
+                </button>
+              </div>
+              <div class="inline-flex rounded-md shadow-sm" role="group">
+                <button type="button" id="crop" class="py-2 px-4 text-sm font-medium text-gray-900 bg-yellow-400 rounded-l-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
+                  Apply crop
+                </button>
+                <button type="button" id="startCrop" class="py-2 px-4 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
+                  Crop
+                </button>
+              </div>
+            <!-- <button id="crop">Crop</button>
+	        <button id="startCrop" style="border: 1px solid #000000">Mark Crop Area</button> -->
+            <div class="inline-flex rounded-md shadow-sm">
+                <input type="file" id="file" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                <a id="lnkDownload" href="#" class="py-2 px-4 text-sm font-medium text-gray-900 bg-white rounded-r-md border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
+                    Save image
+                </a>
+                
+              </div>
+            
+            <div class="inline-flex rounded-md shadow-sm" role="group">
+                <button type="button" id="undo" class="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                  Undo
+                </button>
+                <button type="button" id="redo" class="text-white bg-purple-700 hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">
+                  Redo
+                </button>
+              </div>
+            <!-- <button id="undo">Undo</button>
+            <button id="redo">Redo</button> -->
+        </div>
+        <div class="leftpane">
+            
+            <aside class="w-64" aria-label="Sidebar">
+                <div class=" py-4 px-3 bg-green-500 rounded dark:bg-green-800">
+                   <ul class="space-y-2">
+                      <li>
+                         <a onclick="effectsFunction()" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <span class="ml-3">Effects</span>
+                         </a>
+                      </li>
+                      <li>
+                         <a onclick="colorFunction()" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <span class="flex-1 ml-3 whitespace-nowrap">Color</span>
+                         </a>
+                      </li>
+                      <li>
+                         <a onclick="lightFunction()" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <span class="flex-1 ml-3 whitespace-nowrap">Light</span>
+                         </a>
+                      </li>
+                      <li>
+                         <a onclick="shapesFunction()" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <span class="flex-1 ml-3 whitespace-nowrap">Shapes</span>
+                         </a>
+                      </li>
+                      <li>
+                         <a onclick="drawFunction()" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <span class="flex-1 ml-3 whitespace-nowrap">Draw</span>
+                         </a>
+                      </li>
+                      <li>
+                         <a onclick="canvasFunction()" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <span class="flex-1 ml-3 whitespace-nowrap">Canvas</span>
+                         </a>
+                      </li>
+                      <li>
+                         <a onclick="backgroundFunction()" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <span class="flex-1 ml-3 whitespace-nowrap">Background</span>
+                         </a>
+                      </li>
+                      <li>
+                        <a onclick="filtersFunction()" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                           <span class="flex-1 ml-3 whitespace-nowrap">Filters</span>
+                        </a>
+                     </li>
+                   </ul>
+                </div>
+             </aside>
+           <!--  <div class="w-48 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                <button onclick="effectsFunction()" class="block w-full px-4 py-2 text-white bg-green-700 border-b border-gray-200 rounded-t-lg cursor-pointer dark:bg-gray-800 dark:border-gray-600">Effects</button>
+                <button onclick="colorFunction()" class="block w-full px-4 py-2 border-b border-gray-200 cursor-pointer hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">Color</button>
+                <button onclick="lightFunction()">Light</button>
+                <button onclick="shapesFunction()">Shapes</button>
+                <button onclick="drawFunction()">Draw</button>
+                <button onclick="canvasFunction()">Canvas</button>
+                <button onclick="backgroundFunction()">Background</button>
+                <button onclick="filtersFunction()">Filters</button>
+    
+            </div> -->
+                
+           
+        </div>
+        <div class="middlepane">
+            <canvas id="canvas" width="1250" height="550" ></canvas>
+        </div>
+        <div class="rightpane">
+            <div id="effects">
+                <a class="w3-animate-top block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Blur</h5>
+                    <input type="range" id="blur" value="0" min="0" max="1" step="0.01"><br>
+                </a>
+               <!--  Blur:<input type="range" id="blur" value="0" min="0" max="1" step="0.01"><br> -->
+            </div>
+            <div id="color" class="w3-animate-top">
+                <a class="block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Saturation</h5>
+                    <input type="range" id="saturation" value="0" min="-1" max="1" step="0.01"><br>
+                </a>
+                <a class="block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Hue</h5>
+                    <input type="range" id="hue" value="0" min="-1" max="1" step="0.01"><br>
+                </a>
+                <!-- Saturation:<input type="range" id="saturation" value="0" min="-1" max="1" step="0.01"><br>
+                Hue:<input type="range" id="hue" value="0" min="-1" max="1" step="0.01"><br> -->
+            </div>
+            <div id="light" class="w3-animate-top">
+                <a class="w3-animate-top block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Brightness</h5>
+                    <input type="range" id="brightness" value="0" min="-1" max="1" step="0.01"><br>
+                </a>
+                <a class="block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Contrast</h5>
+                    <input type="range" id="contrast" value="0" min="-1" max="1" step="0.01"><br>
+                </a>
+                <!-- Brightness:<input type="range" id="brightness" value="0" min="-1" max="1" step="0.01"><br>
+                Contrast:<input type="range" id="contrast" value="0" min="-1" max="1" step="0.01"><br> -->
+            </div>
+            <div id="shapes" class="w3-animate-top">
+                SHAPES
+            </div>
+            <div id="draw">
+                DRAW
+            </div>
+            <div id="canvas1">
+                CANVAS
+            </div>
+            <div id="background">
+                BACKGROUND
+            </div>
+            <div id="filters">
+                FILTERS
+            </div>
+        </div>
+    </div>
+    
+        
+    
+
+    
+
+    <!-- <a href='' id='txt'>Click Me!!</a> -->
+
+    <script src="{{url_for('static', filename='js/index.js')}}"></script>
+    <script src="{{url_for('static', filename='js/filters.js')}}"></script>
+    <script src="https://unpkg.com/flowbite@1.4.1/dist/flowbite.js"></script>
+
+{% endblock %}

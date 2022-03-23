@@ -1,9 +1,17 @@
-from flask import Flask,render_template
-from flask.templating import render_template
+from flask import Flask, render_template
+  
 app = Flask(__name__)
-
+  
 @app.route('/')
+def form():
+     return render_template('form.html')
+@app.route('/index')
 def index():
-     return render_template('base.html')
+     return render_template('editor.html')
+# @app.route('/favicon.ico')
+# def favicon():
+#     return app.send_static_file('favicon.ico')
 
-app.run(host='0.0.0.0', port=81)
+if __name__ == '__main__':
+    app.run()
+

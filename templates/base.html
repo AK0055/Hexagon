@@ -1,12 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hexagon</title>
-</head>
-<body>
-    <h1>Hexagon</h1>
-</body>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>HEXAGON</title>
+        <link rel="shortcut icon" href="{{url_for('static', filename='images/favicon.ico')}}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://unpkg.com/fabric@5.2.1/dist/fabric.min.js"></script>
+        <script src="{{url_for('static', filename='js/crop.js')}}"></script>
+        <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.1/dist/flowbite.min.css" />
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='main.css') }}">
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='buttons.css') }}">  
+        {% block head %}
+        {% endblock %}
+        <style>
+			#crop {
+				display: none;
+			}
+		</style>
+        <!-- <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='navbar.css') }}"> -->
+    </head>
+    <body>
+
+        <!-- <button onclick="sendSelectedObjectBack();">Send back</button>
+        <button onclick="sendSelectedObjectToFront();">Bring Front</button>
+        <button id="crop">Crop</button>
+		<button id="startCrop" style="border: 1px solid #000000">Mark Crop Area</button>
+        
+        <canvas id="canvas" width="1750" height="750" style="border:2px solid #000000"></canvas>
+
+        <input type="file" id="file">
+
+        <a href='' id='txt'>Click Me!!</a>
+
+        <script src="{{url_for('static', filename='js/index.js')}}"></script> -->
+        {% block content %}
+        {% endblock %}
+        <!-- <script src="{{url_for('static', filename='js/crop.js')}}"></script> -->
+
+        
+        <!-- <script src="{{url_for('static', filename='js/index.js')}}"></script> -->
+
+    </body>
 </html>
